@@ -1,0 +1,179 @@
+% formatting
+\documentclass[12pt, letterpaper]{article}
+\usepackage{notes}
+% header shit
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Math350 \\ \today}	%% date goes here
+\chead{\textbf{\Large Notes-ish}}
+\lhead{Kevin Wu \\ Susmongus}
+\rfoot{Page \thepage \hspace{1pt}}
+
+\begin{document}
+I was livetexing on about 3 hours of sleep so forgive me for the mess/any typos
+  \section{March 09}
+  \begin{definition}
+    Let $A \ in M_{m \times n}(F)$ and $B \in M_{m \times p}(F)$.
+    Then, the matrix $C = (A|B) \in M_{m\times (n+p)}$ is called an \textbf{Augmented matrix}
+  \end{definition}
+  Last time, we have seen that $A \in GL_n(F)$ if and only if $E_p \ldots E_2E_1A = I_n$ if and only if $A = E_1^{-1} E_2^{-1} \ldots E_p^{-1}$ where $E_i, 1\leq i \leq p$ are elementary matrices.
+  Then, $C^{-1}(A|I_n) = (C^{-1}A | C^{-1}I_n)$ (This is totally worth checking on your own time and not something masochistic).
+  Now, consider $A^{-1}(A|I_n) = (I_n|A^{-1})$.
+  So, $E_p\ldots E_2E_1(A|I_n) = (I_n|A^{-1})$.
+  \begin{remark}[Fact]
+    Apply elementary row operations on $(A|I_n)$ to obtain $(I_n|B)$, then $B = A^{-1}$.
+  \end{remark}
+  \begin{remark}
+    "Now, some high school stuff" - Mondal
+  \end{remark}
+  \subsection*{3.3}
+  \begin{definition}
+    Suppose we have the following linear equations which we denote $S$:
+    \begin{align*}
+      a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n &= b_1 \\
+      a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n &= b_m \\
+      & \vdots \\
+      a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n &= b_m \\
+    \end{align*}
+    Then, $S$ is called a system of $m$-linear equations in $n$-variables with coefficients in $F$.
+    \\
+    Note, if we write:
+    \begin{align*}
+      A = 
+      \begin{bmatrix}
+        a_{11} & a_{12} & \ldots & a_{1n} \\
+        a_{21} & a_{22} & \ldots & a_{2n} \\
+        \vdots & \vdots & \vdots & \vdots \\
+        a_{m1} & a_{m2} & \ldots & a_{mn}
+      \end{bmatrix}
+      \in M_{m\times n}(F)
+    \end{align*}
+    Note $X = 
+    \begin{bmatrix}
+      x_1 \\
+      x_2 \\
+      \vdots \\
+      x_n
+    \end{bmatrix}
+    $ is a variable vector  with $n$ entries
+    and $B = 
+    \begin{bmatrix}
+      b_1 \\
+      \vdots \\
+      b_m
+    \end{bmatrix}
+    \in F^m$.
+    Then, $S$ can also be written as $AX = B$, a matrix equation.
+    $\{X \in F^n | AX=B\}$ is called the solution set of $AX=B$.
+    \\
+    Given $A \in M_{m\times n}(F)$ and $B \in F^m$ if $AX = B$ has a solution, then $S$ is called consistent; otherwise, $S$ is called inconsisitent.
+  \end{definition}
+  \begin{definition}
+    Let $A \in M_{m\times n}(F), B \in F^m$ be matrices.
+    Then
+    \begin{enumerate}
+      \item $AX = B$ is homogenous if $B=0$ and non-homogenous if $B \neq 0$.
+      \item $AX = 0$ is called th ecorresponding homogenous equation of $AX = B$.
+    \end{enumerate}
+  \end{definition}
+  \begin{remark}
+    To be honest, I zoned out so idk how to classify this, but recall $Ker(L_A) = Nullspace(L_A)$
+  \end{remark}
+  \begin{theorem}
+    Consider $A \in M_{m \times n}(F)$.
+    Then:
+    \begin{enumerate}
+      \item Solution set $K$ of $AX = 0$ is a vector space over $F$.
+      \item $K = Ker(L_A)$.
+        So, $\dim{K} = Nullity(A) = n - rank(A)$.
+    \end{enumerate}
+    \begin{proof}
+      PSS1, or see textbook
+    \end{proof}
+  \end{theorem}
+  \begin{theorem}
+    Let $A \in M_{m \times n}(F), B\in F^m$ be matrices.
+    
+    \begin{proof}
+      \item
+      \begin{enumerate}
+        \item See pictures
+        \item WTS $K \subset \{x\} + K_H$.
+          Let $x\in K$, so $Ax = B$.
+          $x-s \in F^n$ and $A(x-s) = Ax - As = B-B = 0$.
+          So, $x-s \in K_H$ and $x= s+(x-s)$.
+          So, $x \in \{s\} + K_H$.
+          Thus, $x \subseteq \{s\} + K_H$.
+      \end{enumerate}
+    \end{proof}
+  \end{theorem}
+  \begin{theorem}
+    Let $A \in M_{n\times n}(F), B\in F^n$ and $K$ as before. 
+    Then $K$ is singleton iff $A \in GL_n(F)$.
+    \begin{proof}
+      Suppose $K = \{s\}$ for all $x \in K_H$.
+      Then, $s + x \in \{s\} + K_H = K = \{s\}$.
+      So, for all $x \in K_H, s+x = s$, i.e. x = 0.
+      Thus, $K_H = \{no idea\}$ and $Null(A) = 0$ which implies $A \in GL_n(F)$.
+      \\
+      Now, suppose $A \in GL_n(F)$. This is left as an exercise to the reader \texttt{:P}
+    \end{proof}
+  \end{theorem}
+  \begin{theorem}[Insel 3.11]
+    Let $A \in M_{m\times n}(F), B \in F^m$ be matrices and $K$ as before.
+    Then, $K \neq \emptyset$ iff $\gamma K(A) = \gamma K(A|B)$
+    \begin{proof}
+      PSS2
+    \end{proof}
+  \end{theorem}
+
+  \subsection*{3.4}
+  \begin{definition}
+    Two systems of equations are called equivalent if they have the same solution set
+  \end{definition}
+  Recall how we solve systems of linear equations with Gaussian eliminination.
+  Given $AX=B$, $(A|B)$ is equivalent to $(A'|B')$.
+  \begin{theorem}[Insel 3.13]
+    Let $A,B$ be matrices as before and $C \in GL_m(F)$.
+    Then, $CAX = CB$ is equvalent to $AX = B$.
+    \begin{remark}
+      $(A|B)$ is equivalent to $(CA|CB)$.
+    \end{remark}
+    \begin{proof}
+      $CAX = CB$ iff $C^{-1}(CAX) = C^{-1}(CB)$ iff $AX = B$
+    \end{proof}
+  \end{theorem}
+  \begin{corollary}
+    If $E$ is an elementary matrix in $GL_m(F)$ and $A,B$ as before, then $(A|B)$ is equivalent to $E(A|B)$
+  \end{corollary}
+  \begin{definition}
+    Gaussian elimination. We all know what it is. We all know how to do it. The book has a good example if you \textbf{really} care but you should not be doing this by hand unless you hate yourself, love to waste time, or are Professor Weibel.
+  \end{definition}
+  \begin{definition}
+    A matrix is said to be in reduced row echelon form if hte following hold:
+    \begin{enumerate}
+      \item Any non-zero row proceed every zero rows
+      \item The first non-zero entry in each row is the only non-zero entry in its column
+      \item The first non-zero entry in each row is $1$ and it occurs in a column to the right of the first non-zero entry in the preceeding row
+    \end{enumerate}
+  \end{definition}
+  \begin{theorem}[Insel 3.14]
+    Gaussian eliminination transforms any matrix into a reduced row echelon form.
+    %\inputgraphics{0309_1.png}
+    \begin{align*}
+      &A \rightarrow R_2 \\
+      &\downarrow \\
+      &R_1
+    \end{align*}
+    fuck you im not livetikzing this
+    \begin{proof}
+      Think about it during spring break.
+      A naive idea is generalizing gaussian elimination on some augmented matrix but writing that would be hell.
+      \\
+      \textit{Hint:} Consider $E_p \ldots E_2E_1 R_1 = R_2$
+      \begin{exercise}
+        If $R \in M_{m\times n}(F)$ is in reduced row echelon matrix $G \in GL_m(F)$, then $GR$ is also reduced row echelon form iff $G = I_m$.
+      \end{exercise}
+    \end{proof}
+  \end{theorem}
+\end{document}
